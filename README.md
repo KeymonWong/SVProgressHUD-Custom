@@ -1,0 +1,2 @@
+# SVProgressHUD-Custom
+SVProgressHUD源码修改，支持文字和图片或加载进度水平排列布局，支持菊花大小可以调节，文字alignment改为铺满(NSTextAlignmentJustified)，不是居中对齐

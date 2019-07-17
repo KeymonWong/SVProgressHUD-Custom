@@ -26,8 +26,8 @@ NSString * const SVProgressHUDStatusUserInfoKey = @"SVProgressHUDStatusUserInfoK
 static const CGFloat SVProgressHUDParallaxDepthPoints = 10.0f;
 static const CGFloat SVProgressHUDUndefinedProgress = -1;
 static const CGFloat SVProgressHUDDefaultAnimationDuration = 0.15f;
-static const CGFloat SVProgressHUDVerticalSpacing = 12.0f;
-static const CGFloat SVProgressHUDHorizontalSpacing = 12.0f;
+static CGFloat SVProgressHUDVerticalSpacing = 12.0f;
+static CGFloat SVProgressHUDHorizontalSpacing = 12.0f;
 static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
 
 
@@ -201,7 +201,11 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
 }
 
 + (void)setActivityIndicatorTransformScale:(CGFloat)scale {
-    [self sharedView].activityIndicatorTransformScale = CGAffineTransformMakeScale(scale, scale);
+    [self sharedView].activityIndicatorTransformScale = scale;
+}
+
++ (void)setPaddingInsets:(UIEdgeInsets)insets {
+    [self sharedView].paddingInsets = insets;
 }
 
 #pragma mark - Show Methods
@@ -367,7 +371,7 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
 }
 
 
-#pragma mark - Offset
+#pragma mark - Offset & reset
 
 + (void)setOffsetFromCenter:(UIOffset)offset {
     [self sharedView].offsetFromCenter = offset;
@@ -377,6 +381,9 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
     [self setOffsetFromCenter:UIOffsetZero];
 }
 
++ (void)resetToDefaultConfig {
+    [[self sharedView] initializeDefaultConfig];
+}
 
 #pragma mark - Instance Methods
 
@@ -398,43 +405,7 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
         _foregroundColor = [UIColor blackColor];
         _backgroundLayerColor = [UIColor colorWithWhite:0 alpha:0.4];
         
-        // Set default values
-        _defaultLayoutDirection = SVProgressHUDLayoutDirectionVertical;
-        _defaultMaskType = SVProgressHUDMaskTypeNone;
-        _defaultStyle = SVProgressHUDStyleLight;
-        _defaultAnimationType = SVProgressHUDAnimationTypeFlat;
-        _minimumSize = CGSizeZero;
-        _font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
-        
-        _imageViewSize = CGSizeMake(28.0f, 28.0f);
-        _shouldTintImages = YES;
-        
-        NSBundle *bundle = [NSBundle bundleForClass:[SVProgressHUD class]];
-        NSURL *url = [bundle URLForResource:@"SVProgressHUD" withExtension:@"bundle"];
-        NSBundle *imageBundle = [NSBundle bundleWithURL:url];
-        
-        _infoImage = [UIImage imageWithContentsOfFile:[imageBundle pathForResource:@"info" ofType:@"png"]];
-        _successImage = [UIImage imageWithContentsOfFile:[imageBundle pathForResource:@"success" ofType:@"png"]];
-        _errorImage = [UIImage imageWithContentsOfFile:[imageBundle pathForResource:@"error" ofType:@"png"]];
-
-        _ringThickness = 2.0f;
-        _ringRadius = 18.0f;
-        _ringNoTextRadius = 24.0f;
-        
-        _cornerRadius = 14.0f;
-		
-        _graceTimeInterval = 0.0f;
-        _minimumDismissTimeInterval = 5.0;
-        _maximumDismissTimeInterval = CGFLOAT_MAX;
-
-        _fadeInAnimationDuration = SVProgressHUDDefaultAnimationDuration;
-        _fadeOutAnimationDuration = SVProgressHUDDefaultAnimationDuration;
-        
-        _maxSupportedWindowLevel = UIWindowLevelNormal;
-        
-        _activityIndicatorTransformScale = CGAffineTransformIdentity;
-        
-        _hapticsEnabled = NO;
+        [self initializeDefaultConfig];
         
         // Accessibility support
         self.accessibilityIdentifier = @"SVProgressHUD";
@@ -445,7 +416,54 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
     return self;
 }
 
+- (void)initializeDefaultConfig {
+    // Set default values
+    _defaultLayoutDirection = SVProgressHUDLayoutDirectionVertical;
+    _defaultMaskType = SVProgressHUDMaskTypeNone;
+    _defaultStyle = SVProgressHUDStyleLight;
+    _defaultAnimationType = SVProgressHUDAnimationTypeFlat;
+    _minimumSize = CGSizeZero;
+    _font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+    
+    _imageViewSize = CGSizeMake(28.0f, 28.0f);
+    _shouldTintImages = YES;
+    
+    NSBundle *bundle = [NSBundle bundleForClass:[SVProgressHUD class]];
+    NSURL *url = [bundle URLForResource:@"SVProgressHUD" withExtension:@"bundle"];
+    NSBundle *imageBundle = [NSBundle bundleWithURL:url];
+    
+    _infoImage = [UIImage imageWithContentsOfFile:[imageBundle pathForResource:@"info" ofType:@"png"]];
+    _successImage = [UIImage imageWithContentsOfFile:[imageBundle pathForResource:@"success" ofType:@"png"]];
+    _errorImage = [UIImage imageWithContentsOfFile:[imageBundle pathForResource:@"error" ofType:@"png"]];
+    
+    _ringThickness = 2.0f;
+    _ringRadius = 18.0f;
+    _ringNoTextRadius = 24.0f;
+    
+    _cornerRadius = 14.0f;
+    
+    _graceTimeInterval = 0.0f;
+    _minimumDismissTimeInterval = 5.0;
+    _maximumDismissTimeInterval = CGFLOAT_MAX;
+    
+    _fadeInAnimationDuration = SVProgressHUDDefaultAnimationDuration;
+    _fadeOutAnimationDuration = SVProgressHUDDefaultAnimationDuration;
+    
+    _maxSupportedWindowLevel = UIWindowLevelNormal;
+    
+    _activityIndicatorTransformScale = 1;
+    
+    _paddingInsets = UIEdgeInsetsMake(12, 12, 12, 12);
+    SVProgressHUDHorizontalSpacing = _paddingInsets.left;
+    SVProgressHUDVerticalSpacing = _paddingInsets.top;
+    
+    _hapticsEnabled = NO;
+}
+
 - (void)updateHUDFrame {
+    SVProgressHUDHorizontalSpacing = self.paddingInsets.left;
+    SVProgressHUDVerticalSpacing = self.paddingInsets.top;
+    
     // Check if an image or progress ring is displayed
     BOOL imageUsed = (self.imageView.image) && !(self.imageView.hidden);
     BOOL progressUsed = self.imageView.hidden;
@@ -1153,7 +1171,7 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
         // Update styling
         UIActivityIndicatorView *activityIndicatorView = (UIActivityIndicatorView*)_indefiniteAnimatedView;
         activityIndicatorView.color = self.foregroundColorForStyle;
-        activityIndicatorView.transform = self.activityIndicatorTransformScale;
+        activityIndicatorView.transform = CGAffineTransformMakeScale(self.activityIndicatorTransformScale, self.activityIndicatorTransformScale);
     }
     [_indefiniteAnimatedView sizeToFit];
     
@@ -1578,9 +1596,15 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
     if (!_isInitializing) _maxSupportedWindowLevel = maxSupportedWindowLevel;
 }
 
-- (void)setActivityIndicatorTransformScale:(CGAffineTransform)activityIndicatorTransformScale {
+- (void)setActivityIndicatorTransformScale:(CGFloat)activityIndicatorTransformScale {
     if (!_isInitializing) {
         _activityIndicatorTransformScale = activityIndicatorTransformScale;
+    }
+}
+
+- (void)setPaddingInsets:(UIEdgeInsets)paddingInsets {
+    if (!_isInitializing) {
+        _paddingInsets = paddingInsets;
     }
 }
 

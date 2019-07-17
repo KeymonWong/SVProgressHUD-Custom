@@ -89,15 +89,15 @@
 		1682702A22DDF247004B1615 /* SVProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
-				1682702B22DDF247004B1615 /* SVRadialGradientLayer.m */,
 				1682702C22DDF247004B1615 /* SVIndefiniteAnimatedView.h */,
-				1682702D22DDF247004B1615 /* SVProgressHUD.h */,
-				1682702E22DDF247004B1615 /* SVProgressAnimatedView.m */,
-				1682702F22DDF247004B1615 /* SVRadialGradientLayer.h */,
-				1682703022DDF247004B1615 /* SVProgressHUD.m */,
 				1682703122DDF247004B1615 /* SVIndefiniteAnimatedView.m */,
-				1682703222DDF247004B1615 /* SVProgressHUD.bundle */,
 				1682703322DDF248004B1615 /* SVProgressAnimatedView.h */,
+				1682702E22DDF247004B1615 /* SVProgressAnimatedView.m */,
+				1682703222DDF247004B1615 /* SVProgressHUD.bundle */,
+				1682702D22DDF247004B1615 /* SVProgressHUD.h */,
+				1682703022DDF247004B1615 /* SVProgressHUD.m */,
+				1682702F22DDF247004B1615 /* SVRadialGradientLayer.h */,
+				1682702B22DDF247004B1615 /* SVRadialGradientLayer.m */,
 			);
 			path = SVProgressHUD;
 			sourceTree = "<group>";

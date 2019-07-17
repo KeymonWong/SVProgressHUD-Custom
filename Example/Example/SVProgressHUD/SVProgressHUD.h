@@ -83,7 +83,8 @@ typedef void (^SVProgressHUDDismissCompletion)(void);
 
 @property (assign, nonatomic) BOOL hapticsEnabled;    // default is NO
 
-@property (nonatomic, assign) CGAffineTransform activityIndicatorTransformScale; ///< 默认 CGAffineTransformIdentity，通过 scale 控制小菊花的大小
+@property (nonatomic, assign) CGFloat activityIndicatorTransformScale; ///< 默认 1，通过 scale 控制小菊花的大小
+@property (nonatomic, assign) UIEdgeInsets paddingInsets; ///< 指示器+文本 组合在一块的内容部分 距离父视图 hud 边缘的距离，内边距
 
 + (void)setDefaultDirection:(SVProgressHUDLayoutDirection)direction; ///< default is SVProgressHUDLayoutDirectionVertical
 + (void)setDefaultStyle:(SVProgressHUDStyle)style;                  // default is SVProgressHUDStyleLight
@@ -116,6 +117,7 @@ typedef void (^SVProgressHUDDismissCompletion)(void);
 + (void)setHapticsEnabled:(BOOL)hapticsEnabled;						// default is NO
 
 + (void)setActivityIndicatorTransformScale:(CGFloat)scale; ///< 默认 scale 为 1
++ (void)setPaddingInsets:(UIEdgeInsets)insets; ///< 默认内边距上左下右 (12, 12, 12, 12)
 
 #pragma mark - Show Methods
 
@@ -145,6 +147,15 @@ typedef void (^SVProgressHUDDismissCompletion)(void);
 
 + (void)setOffsetFromCenter:(UIOffset)offset;
 + (void)resetOffsetFromCenter;
+
+/**
+ * SVProgressHUD 因为是单利形式，所以 hud 在同一个页面有多种样式时候，如果每个 hud 的样式配置的不一样，会出问题
+ * 比如 一个 hud 执行了方法 +setDefaultAnimationType: 为 SVProgressHUDAnimationTypeNative 菊花加载指示器，
+ * 而 另外一个 hud 加载指示器是圆环进度条，但是你忘记了执行方法 +setDefaultAnimationType: 为 SVProgressHUDAnimationTypeFlat，
+ * 从而会出现加载指示器样式不一样，而是你前面设置的时菊花样式的，另外一个 hud 也显示菊花样式的。
+ * 为了应对上述问题，所以在设置另外一个 hud 样式之前，必须首先调用下面方法把 hud 样式重置为本框架一开始的默认值，然后再设置 hud 的对应样式
+ */
++ (void)resetToDefaultConfig;
 
 + (void)popActivity; // decrease activity count, if activity count == 0 the HUD is dismissed
 + (void)dismiss;

@@ -154,6 +154,7 @@ typedef void (^SVProgressHUDDismissCompletion)(void);
  * 而 另外一个 hud 加载指示器是圆环进度条，但是你忘记了执行方法 +setDefaultAnimationType: 为 SVProgressHUDAnimationTypeFlat，
  * 从而会出现加载指示器样式不一样，而是你前面设置的时菊花样式的，另外一个 hud 也显示菊花样式的。
  * 为了应对上述问题，所以在设置另外一个 hud 样式之前，必须首先调用下面方法把 hud 样式重置为本框架一开始的默认值，然后再设置 hud 的对应样式
+ * 或者在每一个 hud 消失的回调里面重置也可以，感觉消失之后重置更合理一点，这样框架内部可以解决掉这个问题，不需要使用者来管理
  */
 + (void)resetToDefaultConfig;
 

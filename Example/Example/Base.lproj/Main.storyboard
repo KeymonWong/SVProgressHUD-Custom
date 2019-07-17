@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +13,156 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="3je-Jj-g5a">
+                                <rect key="frame" x="50" y="84" width="100" height="100"/>
+                                <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="45L-60-iPL"/>
+                                    <constraint firstAttribute="height" constant="100" id="w4b-CL-O5k"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                <state key="normal">
+                                    <string key="title">加载指示器
+圆环进度</string>
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="singleCircle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wT2-Vw-i8L"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="hD0-UV-4QC">
+                                <rect key="frame" x="20" y="234" width="153" height="81"/>
+                                <color key="backgroundColor" red="0.70980392160000005" green="0.78039215689999997" blue="0.86666666670000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="81" id="IMG-lI-Fb6"/>
+                                    <constraint firstAttribute="width" constant="153" id="rqq-X5-NWz"/>
+                                </constraints>
+                                <state key="normal">
+                                    <string key="title">圆环指示器+文本
+垂直排列</string>
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="circleAndTextVer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ab1-lw-vUQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="5ch-ER-uwp">
+                                <rect key="frame" x="241" y="234" width="153" height="81"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal">
+                                    <string key="title">圆环指示器+文本
+水平排列</string>
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="circleAndTextHon:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MdY-JF-UXn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="H8m-ud-W4N">
+                                <rect key="frame" x="234" y="496" width="160" height="81"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal">
+                                    <string key="title">加载指示器
+调整菊花大小</string>
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="changeJuHuaSize:" destination="BYZ-38-t0r" eventType="touchUpInside" id="z0N-Ah-C1l"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="EDf-8h-spy">
+                                <rect key="frame" x="20" y="365" width="153" height="81"/>
+                                <color key="backgroundColor" red="1" green="0.5409764051" blue="0.84731429820000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal">
+                                    <string key="title">菊花指示器+文本
+垂直排列</string>
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="juHuaAndTextVer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CMN-3g-e68"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="BII-Cc-Qkw">
+                                <rect key="frame" x="241" y="365" width="153" height="81"/>
+                                <color key="backgroundColor" red="0.99953407049999998" green="0.98835557699999999" blue="0.47265523669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal">
+                                    <string key="title">菊花指示器+文本
+水平排列</string>
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="juHuaAndTextHon:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Iu3-go-6DU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Tzg-jW-ln0">
+                                <rect key="frame" x="268" y="84" width="100" height="100"/>
+                                <color key="backgroundColor" name="systemGreenColor" catalog="System" colorSpace="catalog"/>
+                                <state key="normal">
+                                    <string key="title">加载指示器
+菊花</string>
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="singleJuHua:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VLX-5d-x2u"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="23n-J4-0xb">
+                                <rect key="frame" x="20" y="496" width="160" height="81"/>
+                                <color key="backgroundColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="4fJ-GL-G8P"/>
+                                    <constraint firstAttribute="height" constant="81" id="AM1-uc-WFc"/>
+                                </constraints>
+                                <state key="normal">
+                                    <string key="title">调整paddingInsets
+内边距</string>
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="changePaddingInsets:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OH6-8C-bLD"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="5ch-ER-uwp" firstAttribute="height" secondItem="hD0-UV-4QC" secondAttribute="height" id="0a4-IU-eVG"/>
+                            <constraint firstItem="EDf-8h-spy" firstAttribute="leading" secondItem="hD0-UV-4QC" secondAttribute="leading" id="0h3-2J-O70"/>
+                            <constraint firstItem="3je-Jj-g5a" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="0nd-Ci-RfU"/>
+                            <constraint firstItem="3je-Jj-g5a" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="1Gf-g8-abh"/>
+                            <constraint firstItem="H8m-ud-W4N" firstAttribute="centerY" secondItem="23n-J4-0xb" secondAttribute="centerY" id="90L-ff-svb"/>
+                            <constraint firstItem="BII-Cc-Qkw" firstAttribute="height" secondItem="EDf-8h-spy" secondAttribute="height" id="Boz-DM-7S5"/>
+                            <constraint firstItem="23n-J4-0xb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="FGm-Ph-0AL"/>
+                            <constraint firstItem="H8m-ud-W4N" firstAttribute="width" secondItem="23n-J4-0xb" secondAttribute="width" id="Ff9-Xn-QYz"/>
+                            <constraint firstItem="BII-Cc-Qkw" firstAttribute="width" secondItem="EDf-8h-spy" secondAttribute="width" id="Fuf-Uu-II7"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="H8m-ud-W4N" secondAttribute="trailing" constant="20" id="GdM-fd-ZsH"/>
+                            <constraint firstItem="EDf-8h-spy" firstAttribute="width" secondItem="hD0-UV-4QC" secondAttribute="width" id="Gy8-kY-Ao8"/>
+                            <constraint firstItem="EDf-8h-spy" firstAttribute="height" secondItem="hD0-UV-4QC" secondAttribute="height" id="Tph-PY-Ph6"/>
+                            <constraint firstItem="H8m-ud-W4N" firstAttribute="height" secondItem="23n-J4-0xb" secondAttribute="height" id="Ue9-cV-IWX"/>
+                            <constraint firstItem="BII-Cc-Qkw" firstAttribute="centerY" secondItem="EDf-8h-spy" secondAttribute="centerY" id="XUw-Vz-1xe"/>
+                            <constraint firstItem="Tzg-jW-ln0" firstAttribute="top" secondItem="3je-Jj-g5a" secondAttribute="top" id="YBD-Jp-MPE"/>
+                            <constraint firstItem="EDf-8h-spy" firstAttribute="top" secondItem="hD0-UV-4QC" secondAttribute="bottom" constant="50" id="ZSL-1g-rtK"/>
+                            <constraint firstItem="hD0-UV-4QC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="ZUc-Vl-D9b"/>
+                            <constraint firstItem="BII-Cc-Qkw" firstAttribute="trailing" secondItem="5ch-ER-uwp" secondAttribute="trailing" id="hgD-5U-e16"/>
+                            <constraint firstItem="Tzg-jW-ln0" firstAttribute="width" secondItem="3je-Jj-g5a" secondAttribute="width" id="is4-hJ-HlZ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5ch-ER-uwp" secondAttribute="trailing" constant="20" id="qDv-hO-NIS"/>
+                            <constraint firstItem="5ch-ER-uwp" firstAttribute="top" secondItem="hD0-UV-4QC" secondAttribute="top" id="sE1-C9-ocg"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Tzg-jW-ln0" secondAttribute="trailing" constant="46" id="sFo-IU-ygN"/>
+                            <constraint firstItem="23n-J4-0xb" firstAttribute="top" secondItem="EDf-8h-spy" secondAttribute="bottom" constant="50" id="tJt-mc-7Fc"/>
+                            <constraint firstItem="hD0-UV-4QC" firstAttribute="top" secondItem="3je-Jj-g5a" secondAttribute="bottom" constant="50" id="vYh-m1-tM5"/>
+                            <constraint firstItem="Tzg-jW-ln0" firstAttribute="height" secondItem="3je-Jj-g5a" secondAttribute="height" id="wZA-k7-VeG"/>
+                            <constraint firstItem="5ch-ER-uwp" firstAttribute="width" secondItem="hD0-UV-4QC" secondAttribute="width" id="x2C-3d-oJO"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="103.79464285714285"/>
         </scene>
     </scenes>
 </document>
